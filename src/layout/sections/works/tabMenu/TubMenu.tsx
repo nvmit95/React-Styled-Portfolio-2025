@@ -27,7 +27,6 @@ const StyledTubMenu = styled.nav`
 		justify-content: space-between;
 		max-width: 352px;
 		width: 100%;
-		border: 1px solid green;
 		margin: 0 auto 40px;
 	}
 `

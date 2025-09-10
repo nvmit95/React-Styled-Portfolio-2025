@@ -18,6 +18,7 @@ body {
 	-moz-osx-font-smoothing: grayscale;
     color: ${theme.colors.font};
     line-height: 1.2;
+    min-width: 360px;
 }
 
 a {
@@ -51,7 +52,7 @@ section:nth-of-type(odd){
 }
 
 section:nth-of-type(even){
-    background-color: ${theme.colors.secendaryBg};
+    background-color: ${theme.colors.secondaryBg};
 }
 p {
     font-weight: 400;
@@ -61,7 +62,7 @@ p {
 
 
 h3 {
-    font-family: 'Josefin Sans', sans-serif;
+    font-family:   'Josefin Sans', sans-serif;
 	font-weight: 700;
 	font-size: 16px;
 	letter-spacing: 1px;

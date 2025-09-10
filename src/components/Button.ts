@@ -13,7 +13,7 @@ export const Button = styled.button`
 	letter-spacing: 1px;
 	text-transform: uppercase;
 	width: 170px;
-	height: 32px;
+	height: 42px;
 
 	position: relative;
 	z-index: 0;
@@ -35,8 +35,8 @@ export const Button = styled.button`
 		position: absolute;
 		bottom: 0;
 		left: 50%;
-		z-index: -1;
 		transform: translateX(-50%);
+		z-index: -1;
 	}
 `
 /* background-color ${props => props.background}; - через пропсы - писчать нужно внутри компонента*/

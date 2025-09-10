@@ -1,41 +1,67 @@
 import styled, { css } from 'styled-components'
 import { theme } from '../../../styles/Theme'
 
-export const MobileMenu = (props: { menuItems: Array<string> }) => {
-	return (
-		<StyleMobileMenu>
-			<BurgerButton isOpen={false}>
-				<span></span>
-			</BurgerButton>
-			<MobileMenuPopup isOpen={false}>
-				<ul>
-					{props.menuItems.map((item, index) => {
-						return (
-							<ListItem key={index}>
-								<Link href=''>
-									{item}
-									<Mask>
-										<span>{item}</span>
-									</Mask>
-									<Mask>
-										<span>{item}</span>
-									</Mask>
-								</Link>
-							</ListItem>
-						)
-					})}
-				</ul>
-			</MobileMenuPopup>
-		</StyleMobileMenu>
-	)
-}
+//Menu
 
-const StyleMobileMenu = styled.nav`
-	display: none;
-	@media ${theme.media.tablet} {
-		display: block;
+const Link = styled.a`
+	font-family: 'Josefin Sans', sans-serif;
+	font-weight: 400;
+	font-size: 30px;
+	text-align: center;
+	color: transparent;
+`
+const Mask = styled.span`
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: inline-block;
+	height: 50%;
+	overflow-y: hidden;
+	//outline: 1px solid red;
+	color: ${theme.colors.accent};
+	& + & {
+		top: 50%;
+		span {
+			display: inline-block;
+			transform: translateY(-50%);
+		}
 	}
 `
+
+const MenuItem = styled.li`
+	position: relative;
+	&::before {
+		content: '';
+		display: inline-block;
+		height: 3px;
+		background-color: ${theme.colors.accent};
+
+		position: absolute;
+		top: 50%;
+		left: -10px;
+		right: -10px;
+		z-index: 1;
+
+		transform: scale(0);
+	}
+	&:hover {
+		&::before {
+			transform: scale(1);
+		}
+
+		${Mask} {
+			transform: skew(12deg) translate(5px);
+			color: ${theme.colors.font};
+			& + ${Mask} {
+				transform: skew(12deg) translate(-5px);
+			}
+		}
+	}
+`
+
+//MobileMenu
+
+const MobileMenu = styled.nav``
 const MobileMenuPopup = styled.div<{ isOpen: boolean }>`
 	position: fixed;
 	background-color: rgba(31, 31, 32, 0.9);
@@ -118,57 +144,22 @@ const BurgerButton = styled.button<{ isOpen: boolean }>`
 	}
 `
 
-const Link = styled.a`
-	font-family: 'Josefin Sans', sans-serif;
-	font-weight: 400;
-	font-size: 30px;
-	text-align: center;
-	color: transparent;
-`
-const Mask = styled.span`
-	position: absolute;
-	top: 0;
-	left: 0;
-	display: inline-block;
-	height: 50%;
-	overflow-y: hidden;
-	//outline: 1px solid red;
-	color: ${theme.colors.accent};
-	& + & {
-		top: 50%;
-		span {
-			display: inline-block;
-			transform: translateY(-50%);
-		}
+//DesktopMenu
+
+const DesktopMenu = styled.nav`
+	ul {
+		display: flex;
+		gap: 30px;
+		justify-content: center;
 	}
 `
-const ListItem = styled.li`
-	position: relative;
-	&::before {
-		content: '';
-		display: inline-block;
-		height: 3px;
-		background-color: ${theme.colors.accent};
 
-		position: absolute;
-		top: 50%;
-		left: -10px;
-		right: -10px;
-		z-index: 1;
-
-		transform: scale(0);
-	}
-	&:hover {
-		&::before {
-			transform: scale(1);
-		}
-
-		${Mask} {
-			transform: skew(12deg) translate(5px);
-			color: ${theme.colors.font};
-			& + ${Mask} {
-				transform: skew(12deg) translate(-5px);
-			}
-		}
-	}
-`
+export const S = {
+	Link,
+	Mask,
+	MenuItem,
+	MobileMenu,
+	MobileMenuPopup,
+	BurgerButton,
+	DesktopMenu,
+}
