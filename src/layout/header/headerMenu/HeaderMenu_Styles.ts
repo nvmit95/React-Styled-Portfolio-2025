@@ -1,9 +1,10 @@
 import styled, { css } from 'styled-components'
 import { theme } from '../../../styles/Theme'
+import { Link } from 'react-scroll'
 
 //Menu
 
-const Link = styled.a`
+const NavLink = styled(Link)`
 	font-family: 'Josefin Sans', sans-serif;
 	font-weight: 400;
 	font-size: 30px;
@@ -17,7 +18,7 @@ const Mask = styled.span`
 	display: inline-block;
 	height: 50%;
 	overflow-y: hidden;
-	//outline: 1px solid red;
+
 	color: ${theme.colors.accent};
 	& + & {
 		top: 50%;
@@ -64,7 +65,7 @@ const MenuItem = styled.li`
 const MobileMenu = styled.nav``
 const MobileMenuPopup = styled.div<{ isOpen: boolean }>`
 	position: fixed;
-	background-color: rgba(31, 31, 32, 0.9);
+	background-color: rgba(32, 31, 31, 0.9);
 	top: 0;
 	left: 0;
 	right: 0;
@@ -155,7 +156,7 @@ const DesktopMenu = styled.nav`
 `
 
 export const S = {
-	Link,
+	NavLink,
 	Mask,
 	MenuItem,
 	MobileMenu,
