@@ -7,6 +7,7 @@ import { Container } from '../../../components/Container'
 import { TabsStatusType, TubMenu } from './tabMenu/TubMenu'
 import { S } from './works/Works_Styles'
 import { useState } from 'react'
+import { AnimatePresence, motion } from 'motion/react'
 
 // const tabsItems = ['ALL', 'landing page', 'React', 'spa']
 const tabsItems: Array<{
@@ -25,12 +26,42 @@ const worksData = [
 		src: socialImg,
 		text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim. Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
 		type: 'spa',
+		id: 1,
 	},
 	{
 		title: 'Timer',
 		src: timerImg,
 		text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim. Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
 		type: 'react',
+		id: 2,
+	},
+	{
+		title: 'Social Network',
+		src: socialImg,
+		text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim. Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+		type: 'spa',
+		id: 3,
+	},
+	{
+		title: 'Timer',
+		src: timerImg,
+		text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim. Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+		type: 'react',
+		id: 4,
+	},
+	{
+		title: 'Social Network',
+		src: socialImg,
+		text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim. Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+		type: 'spa',
+		id: 5,
+	},
+	{
+		title: 'Timer',
+		src: timerImg,
+		text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim. Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+		type: 'react',
+		id: 6,
 	},
 ]
 export const Works = () => {
@@ -64,11 +95,31 @@ export const Works = () => {
 					align={'flex-start'}
 					wrap={'wrap'}
 				>
-					{filterWorks.map((w, index) => {
-						return (
-							<Work title={w.title} key={index} src={w.src} text={w.text} />
-						)
-					})}
+					<AnimatePresence>
+						{filterWorks.map(w => {
+							return (
+								<motion.div
+									style={{
+										flexGrow: 1,
+
+										width: '400px',
+										maxWidth: '540px',
+									}}
+									layout
+									initial={{ opacity: 0 }}
+									animate={{ opacity: 1 }}
+									exit={{ opacity: 0 }}
+									transition={{
+										layout: { duration: 0.4, ease: 'easeInOut' },
+										opacity: { duration: 0.3 },
+									}}
+									key={w.id}
+								>
+									<Work title={w.title} key={w.id} src={w.src} text={w.text} />
+								</motion.div>
+							)
+						})}
+					</AnimatePresence>
 				</FlexWrapper>
 			</Container>
 		</S.Works>

@@ -48,7 +48,6 @@ const StyledTubMenu = styled.nav`
 		max-width: 352px;
 		width: 100%;
 		margin: 0 auto 40px;
-		border: 1px solid yellow;
 	}
 
 	/* 0 → margin-top: 0; (верхний отступ = 0)

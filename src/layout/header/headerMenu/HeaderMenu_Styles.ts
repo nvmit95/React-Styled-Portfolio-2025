@@ -4,13 +4,10 @@ import { Link } from 'react-scroll'
 
 //Menu
 
-const NavLink = styled(Link)`
-	font-family: 'Josefin Sans', sans-serif;
-	font-weight: 400;
-	font-size: 30px;
-	text-align: center;
-	color: transparent;
+const MenuItem = styled.li`
+	position: relative;
 `
+
 const Mask = styled.span`
 	position: absolute;
 	top: 0;
@@ -18,8 +15,9 @@ const Mask = styled.span`
 	display: inline-block;
 	height: 50%;
 	overflow-y: hidden;
-
 	color: ${theme.colors.accent};
+	transition: ${theme.animation.transition};
+
 	& + & {
 		top: 50%;
 		span {
@@ -29,8 +27,13 @@ const Mask = styled.span`
 	}
 `
 
-const MenuItem = styled.li`
-	position: relative;
+const NavLink = styled(Link)`
+	font-family: 'Josefin Sans', sans-serif;
+	font-weight: 400;
+	font-size: 30px;
+	text-align: center;
+	color: transparent;
+
 	&::before {
 		content: '';
 		display: inline-block;
@@ -44,8 +47,11 @@ const MenuItem = styled.li`
 		z-index: 1;
 
 		transform: scale(0);
+		transition: ${theme.animation.transition};
 	}
-	&:hover {
+
+	&:hover,
+	&.active {
 		&::before {
 			transform: scale(1);
 		}
@@ -71,22 +77,29 @@ const MobileMenuPopup = styled.div<{ isOpen: boolean }>`
 	right: 0;
 	bottom: 0;
 	z-index: 99999;
-	display: none;
-	${props =>
-		props.isOpen &&
-		css<{ isOpen: boolean }>`
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		`}
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transform: translateY(-100%);
+	transition: ${theme.animation.mobileTransition};
 
 	ul {
 		display: flex;
-		gap: 30px;
+		gap: 10px;
 		justify-content: center;
 		flex-direction: column;
 		align-items: center;
+		transition: ${theme.animation.mobileTransition};
 	}
+
+	${props =>
+		props.isOpen &&
+		css<{ isOpen: boolean }>`
+			transform: translateY(0);
+			& ul {
+				gap: 40px;
+			}
+		`}
 `
 
 const BurgerButton = styled.button<{ isOpen: boolean }>`
